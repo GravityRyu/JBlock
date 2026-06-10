@@ -23,6 +23,20 @@ function setIfExists(root, path, value) {
   return true;
 }
 
+function setObjectValues(root, path, value) {
+  const keys = path.split(".");
+  let node = root;
+  for (let i = 0; i < keys.length; i += 1) {
+    if (!isObject(node) || !(keys[i] in node)) return false;
+    node = node[keys[i]];
+  }
+  if (!isObject(node)) return false;
+  Object.keys(node).forEach((key) => {
+    node[key] = value;
+  });
+  return true;
+}
+
 function cleanBasicConfig(body) {
   const data = body && body.data;
   if (!isObject(data)) return body;
@@ -108,6 +122,39 @@ function cleanBasicConfig(body) {
     if (isObject(cart.popCartVCNames)) {
       cart.popCartVCNames.navigationBarHiddenVCStrArr = [];
     }
+  }
+
+  const message = data.JDMessage;
+  if (isObject(message)) {
+    setIfExists(message, "recommendfloor.support_recommendfloor", "0");
+    setIfExists(message, "recommendfeeds.support_recommendfeeds", "0");
+    setIfExists(message, "recommendfeeds.fetchfeeds_api", "0");
+    setIfExists(message, "PopQueue.enableOptimizedPopQueue", "0");
+    setIfExists(message, "noMsgTrigger.enableNoMsgTrigger", "0");
+    setIfExists(message, "newmessage.newskin", "0");
+    setIfExists(message, "newmessage.downgrade", "1");
+    setIfExists(message, "tabbarmessage.useMessageCache", "0");
+    setIfExists(message, "tabbarmessage.isNewMessageReminder", "0");
+    setIfExists(message, "tabbarmessage.tabbarUpdateRedDot", "0");
+
+    [
+      "enableDiscountsNewTNArch",
+      "enableCSListNewTNArch",
+      "enablePushGuideNewTNArch",
+      "enableFeedbackNewTNArch",
+      "enableLogisticsNewTNArch",
+      "enableStationNewTNArch",
+      "enableNewTNArch",
+      "enableNewTNCacheView",
+      "enableCalenderUseTN",
+      "unEnableCustomUseTN",
+    ].forEach((key) => {
+      setIfExists(message, `TnConfig.${key}`, "0");
+    });
+
+    setObjectValues(message, "listcellTN.cell_support_tn_templateIds", "0");
+    setObjectValues(message, "stationmsgTN.support_product_templateIds", "0");
+    setObjectValues(message, "stationmsgTN.support_tn_templateIds", "0");
   }
 
   return body;
