@@ -22,6 +22,10 @@ DOMAIN,mllog.jd.com,REJECT
 ^https?:\/\/storage\.360buyimg\.com\/(?:sunglasses-push-msg\/.*\.json|appcartsoa\/(?:client\/cart_egg_entry|cart_taohuadao_light|finalrixiao)\.json|app\.m\.jd\.com\/lottie\/scs_jingEgg(?:Halo|FireWorks)\.json|mobileskin\/an\d+\.json) _ reject
 ^https?:\/\/storage\.360buyimg\.com\/appcartsoa\/must_have_dialog_add\.png _ reject
 
+# Message-center TN/ad feed requests. The visible images load later from m.360buyimg.com with Referer: tn_message.
+^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=recommendShopV15100 _ reject
+^https?:\/\/sh\.jd\.com\/(?:d(?:\?|$)|j\/) _ reject
+
 # XView popup / right-floating-logo / top-banner assets observed with Referer: download_image_xview_*.
 ^https?:\/\/m15\.360buyimg\.com\/mobilecms\/jfs\/t1\/438105\/30\/1519\/25976\/6a0ee245F0ffa0abc\/00290900909a97ce\.png\.webp(?:[?!].*)?$ _ reject
 ^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/91bc616e0466a56a\.png(?:[?!].*)?$ _ reject
@@ -55,4 +59,4 @@ http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=basicCon
 http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=logConfig script-path=https://raw.githubusercontent.com/GravityRyu/JBlock/refs/heads/main/jd_log_config.js,requires-body=1,max-size=0,timeout=10
 
 [MITM]
-hostname = api.m.jd.com, storage.360buyimg.com, m.360buyimg.com, m15.360buyimg.com, img12.360buyimg.com, img20.360buyimg.com
+hostname = api.m.jd.com, sh.jd.com, storage.360buyimg.com, m.360buyimg.com, m15.360buyimg.com, img12.360buyimg.com, img20.360buyimg.com

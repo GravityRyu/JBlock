@@ -126,16 +126,42 @@ function cleanBasicConfig(body) {
 
   const message = data.JDMessage;
   if (isObject(message)) {
+    setIfExists(message, "csNewList.support_newCSList", "0");
+    setIfExists(message, "MainApiPreReq.supportPreReq", "0");
+    setIfExists(message, "tabRedNum.enabletabRedServiceNum", "0");
+    setIfExists(message, "pushguide.pushDialogStyle4", "0");
+    setIfExists(message, "pushguide.popUpTimes", "0");
+    setIfExists(message, "pushguide.requestTimes", "0");
+    setIfExists(message, "JumpCps.enableJumpCps", "0");
+    setIfExists(message, "discountsNewList.support_newDiscountsList", "0");
     setIfExists(message, "recommendfloor.support_recommendfloor", "0");
     setIfExists(message, "recommendfeeds.support_recommendfeeds", "0");
     setIfExists(message, "recommendfeeds.fetchfeeds_api", "0");
     setIfExists(message, "PopQueue.enableOptimizedPopQueue", "0");
+    setIfExists(message, "stationmsgcache.support_cache_queue", "0");
+    setIfExists(message, "stationmsgcache.cache_queue_limit_num", "0");
+    setIfExists(message, "stationmsgcache.msg_stacked_limit_count", "0");
+    setIfExists(message, "stationmsgcache.msg_show_interval", "0");
+    setIfExists(message, "stationmsgcache.msg_life_time", "0");
     setIfExists(message, "noMsgTrigger.enableNoMsgTrigger", "0");
     setIfExists(message, "newmessage.newskin", "0");
     setIfExists(message, "newmessage.downgrade", "1");
     setIfExists(message, "tabbarmessage.useMessageCache", "0");
+    setIfExists(message, "tabbarmessage.touchtabrefresh", "0");
+    setIfExists(message, "tabbarmessage.isNewTabAnimation", "0");
+    setIfExists(message, "tabbarmessage.isAnchorBoomAnimation", "0");
     setIfExists(message, "tabbarmessage.isNewMessageReminder", "0");
     setIfExists(message, "tabbarmessage.tabbarUpdateRedDot", "0");
+    setIfExists(message, "group.entry", "0");
+    setIfExists(message, "mtaMixExpo.support_mta_mix_expo", "0");
+    setIfExists(message, "tipsanimation.support_tipsanimation", "0");
+    setIfExists(message, "stickyFoldBar.support_stickyFoldBar", "0");
+    setIfExists(message, "TnUniversalViewController.enableTnSettingVC", "0");
+    setIfExists(message, "redpointStyle.support_newRedPointStyle", "0");
+    setIfExists(message, "MCSupportPreRequestConfig.enableMainPreRequest", "0");
+    setIfExists(message, "MessagePerformanceOptimization.disableFirstFrameRenderFeeds", "1");
+    setIfExists(message, "MessagePerformanceOptimization.responseRenderDelayMS", "0");
+    setIfExists(message, "MessagePerformanceOptimization.cacheRenderDelayMS", "0");
 
     [
       "enableDiscountsNewTNArch",
@@ -147,11 +173,11 @@ function cleanBasicConfig(body) {
       "enableNewTNArch",
       "enableNewTNCacheView",
       "enableCalenderUseTN",
-      "unEnableCustomUseTN",
     ].forEach((key) => {
       setIfExists(message, `TnConfig.${key}`, "0");
     });
 
+    setIfExists(message, "TnConfig.unEnableCustomUseTN", "1");
     setObjectValues(message, "listcellTN.cell_support_tn_templateIds", "0");
     setObjectValues(message, "stationmsgTN.support_product_templateIds", "0");
     setObjectValues(message, "stationmsgTN.support_tn_templateIds", "0");
