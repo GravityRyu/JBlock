@@ -7,6 +7,9 @@
 # DSP ad feed observed as im-x.jd.com/dsp/np.
 DOMAIN,im-x.jd.com,REJECT
 
+# Home/search ad delivery observed in this capture.
+DOMAIN,sh.jd.com,REJECT
+
 # Telemetry/noise domains observed in this capture.
 DOMAIN,mars.jd.com,REJECT
 DOMAIN,perf.m.jd.com,REJECT
@@ -19,9 +22,33 @@ DOMAIN,mllog.jd.com,REJECT
 ^https?:\/\/storage\.360buyimg\.com\/(?:sunglasses-push-msg\/.*\.json|appcartsoa\/(?:client\/cart_egg_entry|cart_taohuadao_light|finalrixiao)\.json) _ reject
 ^https?:\/\/storage\.360buyimg\.com\/appcartsoa\/must_have_dialog_add\.png _ reject
 
+# XView popup / right-floating-logo / top-banner assets observed with Referer: download_image_xview_*.
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/91bc616e0466a56a\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/b49e6c18dc93b644\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a0d80d89d0e82\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/47c681638b906b03\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/ea22c154eb10e17b\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/66e9b6e4db0624e3\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/6b38726774a4aea1\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/21fe572ace75424c\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a4350785a1dd6\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/012be5528bd337f9\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a43507893f792\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/c80f74ad2681164a\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/cd8fd5a48cf9b9d5\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a435078f51d58\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/225ca316476fc324\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/16d0bb1031fef317\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/526d7e70026d6e83\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a35e3ed794586\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/4dfd579b5be94fb4\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/8aa037ba6e8ded94\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a244345fcd893\.png(?:[?!].*)?$ _ reject
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/027637540b4bb4a3\.png(?:[?!].*)?$ _ reject
+
 [Script]
 http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=basicConfig script-path=https://raw.githubusercontent.com/GravityRyu/JBlock/refs/heads/main/jd_basic_config.js,requires-body=1,max-size=0,timeout=10
 http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=logConfig script-path=https://raw.githubusercontent.com/GravityRyu/JBlock/refs/heads/main/jd_log_config.js,requires-body=1,max-size=0,timeout=10
 
 [MITM]
-hostname = api.m.jd.com, storage.360buyimg.com
+hostname = api.m.jd.com, storage.360buyimg.com, m.360buyimg.com, img12.360buyimg.com, img20.360buyimg.com

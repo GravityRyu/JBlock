@@ -41,6 +41,30 @@ function cleanBasicConfig(body) {
     setIfExists(search, "switchSearchLoadWithBundleIdAiPop15260.switchSearchLoadWithBundleIdAiPop15260", "0");
     setIfExists(search, "promotionModuleSwitch.promotionModuleSwitch", "0");
     setIfExists(search, "searchADMtaRequestQueueAB.searchADMtaRequestQueueAB", "0");
+    setIfExists(search, "hotSearchListSwitcher.newHotSearchList", "0");
+    setIfExists(search, "switchEnableRightsPopupFloorRefresh15800.switchEnableRightsPopupFloorRefresh15800", "0");
+    setIfExists(search, "switchTipRequestTime.switchTipRequestTime", "0");
+    setIfExists(search, "enableListRightBottomSetupOpt15520.enableListRightBottomSetupOpt15520", "0");
+    setIfExists(search, "enableSearchBarSetupOpt15320.enableSearchBarSetupOpt15320", "0");
+    setIfExists(search, "searchSortBarAB.searchSortBarAB", "0");
+    setIfExists(search, "shoppingGuideType.shoppingGuideType", "0");
+    setIfExists(search, "shopSearchSwitcher.newShopSearch", "0");
+    setIfExists(search, "switchSearchPreDownloadTnCardInfo.search_shop_live_card", {});
+    setIfExists(search, "switchSearchPreDownloadTnCardInfo.search_shop_normal_card", {});
+    setIfExists(search, "switchSearchPreDownloadTnCardInfo.search_standard_full_screen_30", {});
+
+    if (isObject(search.searchListWarmUpTnConfig15330)) {
+      search.searchListWarmUpTnConfig15330.enabled = "0";
+      search.searchListWarmUpTnConfig15330.preloadTemplates = [];
+      search.searchListWarmUpTnConfig15330.templateConf = {};
+      search.searchListWarmUpTnConfig15330.listItemEnabled = "0";
+      search.searchListWarmUpTnConfig15330.gridItemEnabled = "0";
+    }
+
+    if (isObject(search.searchListWarmUpLegoConf15700)) {
+      search.searchListWarmUpLegoConf15700.enabled = "0";
+      search.searchListWarmUpLegoConf15700.icons = [];
+    }
   }
 
   setIfExists(data, "JDAdsCore.adDegradationConfig.degraded", "1");
