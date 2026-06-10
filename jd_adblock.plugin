@@ -19,10 +19,11 @@ DOMAIN,mllog.jd.com,REJECT
 
 [URL Rewrite]
 # Cart/activity egg animations and promotion dialog assets observed in the capture.
-^https?:\/\/storage\.360buyimg\.com\/(?:sunglasses-push-msg\/.*\.json|appcartsoa\/(?:client\/cart_egg_entry|cart_taohuadao_light|finalrixiao)\.json) _ reject
+^https?:\/\/storage\.360buyimg\.com\/(?:sunglasses-push-msg\/.*\.json|appcartsoa\/(?:client\/cart_egg_entry|cart_taohuadao_light|finalrixiao)\.json|app\.m\.jd\.com\/lottie\/scs_jingEgg(?:Halo|FireWorks)\.json|mobileskin\/an\d+\.json) _ reject
 ^https?:\/\/storage\.360buyimg\.com\/appcartsoa\/must_have_dialog_add\.png _ reject
 
 # XView popup / right-floating-logo / top-banner assets observed with Referer: download_image_xview_*.
+^https?:\/\/m15\.360buyimg\.com\/mobilecms\/jfs\/t1\/438105\/30\/1519\/25976\/6a0ee245F0ffa0abc\/00290900909a97ce\.png\.webp(?:[?!].*)?$ _ reject
 ^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/91bc616e0466a56a\.png(?:[?!].*)?$ _ reject
 ^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/b49e6c18dc93b644\.png(?:[?!].*)?$ _ reject
 ^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a0d80d89d0e82\.png(?:[?!].*)?$ _ reject
@@ -46,9 +47,12 @@ DOMAIN,mllog.jd.com,REJECT
 ^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a244345fcd893\.png(?:[?!].*)?$ _ reject
 ^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/027637540b4bb4a3\.png(?:[?!].*)?$ _ reject
 
+# JD home/search png.webp ad widgets observed on m15.360buyimg.com.
+^https?:\/\/m15\.360buyimg\.com\/mobilecms\/.*\/(?:00290bd0304a5e2c|02760270966abb44|7ceccf56095b82c2|2ff2bc7114b60ef8|1e9e5bd271b47d12|002946514ade7f35|339aa673b60d6ee4|481edc30c40e0fa8|0029030030702891|74aecc04ce2dad5a|7f3d91b07f3efeec|021879439004dd53|002909004818dd62|b382c70b3f021750|00290c90e45c885c|e48d3e3ac168098e|f0d602aec9836766|002903c03c6f6648|7785153b1ae0c355)\.png\.webp(?:[?!].*)?$ _ reject
+
 [Script]
 http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=basicConfig script-path=https://raw.githubusercontent.com/GravityRyu/JBlock/refs/heads/main/jd_basic_config.js,requires-body=1,max-size=0,timeout=10
 http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=logConfig script-path=https://raw.githubusercontent.com/GravityRyu/JBlock/refs/heads/main/jd_log_config.js,requires-body=1,max-size=0,timeout=10
 
 [MITM]
-hostname = api.m.jd.com, storage.360buyimg.com, m.360buyimg.com, img12.360buyimg.com, img20.360buyimg.com
+hostname = api.m.jd.com, storage.360buyimg.com, m.360buyimg.com, m15.360buyimg.com, img12.360buyimg.com, img20.360buyimg.com
