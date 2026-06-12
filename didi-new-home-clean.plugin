@@ -1,0 +1,9 @@
+#!name=DiDi New Home Clean
+#!desc=Only removes the new homepage extras from /homepage/v1/other/fast.
+#!author=Codex
+
+[Script]
+http-response ^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/other\/fast(?:\?|$) script-path=didi-new-home-clean.js, requires-body=true, timeout=10, tag=DiDi New Home Clean
+
+[MITM]
+hostname = conf.diditaxi.com.cn
