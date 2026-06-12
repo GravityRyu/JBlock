@@ -1,9 +1,9 @@
 #!name=DiDi New Home Clean
-#!desc=Only removes the new homepage extras from /homepage/v1/other/fast.
+#!desc=Block new homepage extras from /homepage/v1/other/fast.
 #!author=Codex
 
-[Script]
-http-response ^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/other\/fast(?:\?|$) script-path=https://raw.githubusercontent.com/GravityRyu/JBlock/refs/heads/main/didi-new-home-clean.js, requires-body=true, timeout=10, tag=DiDi New Home Clean
+[Url Rewrite]
+^https?:\/\/conf\.diditaxi\.com\.cn\/homepage\/v1\/other\/fast(?:\?|$) - reject-dict
 
 [MITM]
 hostname = conf.diditaxi.com.cn
