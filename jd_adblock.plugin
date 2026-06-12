@@ -1,13 +1,13 @@
 #!name=JD AdBlock
 #!desc=Block JD iOS ads/popups from local capture. Tested against JD4iPhone 15.8.0 traffic.
 #!author=Codex
-#!date=2026-06-10
+#!date=2026-06-12
 
 [Rule]
 # DSP ad feed observed as im-x.jd.com/dsp/np.
 DOMAIN,im-x.jd.com,REJECT
 
-# Home/search ad delivery observed in this capture.
+# Home/search/TN ad delivery observed in this capture.
 DOMAIN,sh.jd.com,REJECT
 
 # Telemetry/noise domains observed in this capture.
@@ -17,46 +17,27 @@ DOMAIN,anti-sdk-report.m.jd.com,REJECT
 DOMAIN,ex.m.jd.com,REJECT
 DOMAIN,mllog.jd.com,REJECT
 
-[URL Rewrite]
+[Rewrite]
+# Native Loon JSON rewrite for JD basicConfig.
+^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=basicConfig response-body-json-jq '(.data.JDSearch.searchListHeader |= (if type=="object" then with_entries(.value="0") else . end)) | .data.JDSearch.forbidSlidePop.forbidSlidePop="1" | .data.JDSearch.search936AdShopPopShopExpoSwitcher.search936AdShopPopShopExpoSwitcher="0" | .data.JDSearch.switchSearchRequestAdNetWord15220.switchSearchRequestAdNetWord15220="0" | .data.JDSearch.switchSearchLoadWithBundleIdAiPop15260.switchSearchLoadWithBundleIdAiPop15260="0" | .data.JDSearch.promotionModuleSwitch.promotionModuleSwitch="0" | .data.JDSearch.searchADMtaRequestQueueAB.searchADMtaRequestQueueAB="0" | .data.JDSearch.hotSearchListSwitcher.newHotSearchList="0" | .data.JDSearch.switchEnableRightsPopupFloorRefresh15800.switchEnableRightsPopupFloorRefresh15800="0" | .data.JDSearch.switchTipRequestTime.switchTipRequestTime="0" | .data.JDSearch.enableListRightBottomSetupOpt15520.enableListRightBottomSetupOpt15520="0" | .data.JDSearch.enableSearchBarSetupOpt15320.enableSearchBarSetupOpt15320="0" | .data.JDSearch.searchSortBarAB.searchSortBarAB="0" | .data.JDSearch.shoppingGuideType.shoppingGuideType="0" | .data.JDSearch.shopSearchSwitcher.newShopSearch="0" | .data.JDSearch.switchSearchPreDownloadTnCardInfo.search_shop_live_card={} | .data.JDSearch.switchSearchPreDownloadTnCardInfo.search_shop_normal_card={} | .data.JDSearch.switchSearchPreDownloadTnCardInfo.search_standard_full_screen_30={} | .data.JDSearch.searchListWarmUpTnConfig15330.enabled="0" | .data.JDSearch.searchListWarmUpTnConfig15330.preloadTemplates=[] | .data.JDSearch.searchListWarmUpTnConfig15330.templateConf={} | .data.JDSearch.searchListWarmUpTnConfig15330.listItemEnabled="0" | .data.JDSearch.searchListWarmUpTnConfig15330.gridItemEnabled="0" | .data.JDSearch.searchListWarmUpLegoConf15700.enabled="0" | .data.JDSearch.searchListWarmUpLegoConf15700.icons=[] | .data.JDAdsCore.adDegradationConfig.degraded="1" | .data.JDPromotion.promotionH5Config.enOpen="0" | .data.JDPromotion.promotionH5Config.enUrl="" | .data["JDApp-home"]["mp-close-ad-pre-req"]["mp-close-ad-pre-req"]="1" | .data.JDXView.XVOpenFileThreadSW.value=false | .data.JDXView.XVOpenFileThreadSW.switch=false | .data.JDXView.XVOpenMtaKDThreadSW.value=false | .data.JDXView.XVOpenMtaKDThreadSW.switch=false | .data.JDXView.XVOpenTTTUpgrade.value=false | .data.JDXView.XVOpenTTTUpgrade.switch=false | .data.JDXView["15310-preDownload"].value=false | .data.JDXView["15310-preDownload"].switch=false | .data.JDXView.XVOpenFlexCubeFont.value=false | .data.JDXView.XVOpenFlexCubeFont.switch=false | .data.JDXView.XVOpenHookFilterSW.value=false | .data.JDXView.XVOpenHookFilterSW.switch=false | .data.JDXView["15110-enFreeMethods"].value=false | .data.JDXView["15110-enFreeMethods"].switch=false | .data.JDXView.XVCloseTTTUpgrade.value="true" | .data.JDXView.TejiaTabTip.config.disable=true | .data.JDXView.TejiaTabTip.config.removeCountDown=0 | .data.JDXView.TejiaTabTip.config.imageUrl="" | .data.JDUniformRecommend.uniformRecommendAccurateADExpo.uniformRecommendAccurateADExpo="0" | .data.JDUniformRecommend.uniformRecommendADExpoQueue.uniformRecommendADExpoQueue="0" | .data.JDCart.PopCartBottomSpace.Degrade="1" | .data.JDCart.HandleCouponInterfaceDegrade.isHandleCouponInterfaceDegrade="1" | .data.JDCart.popCartVCNames.navigationBarHiddenVCStrArr=[] | .data.JDMessage.csNewList.support_newCSList="0" | .data.JDMessage.MainApiPreReq.supportPreReq="0" | .data.JDMessage.tabRedNum.enabletabRedServiceNum="0" | .data.JDMessage.pushguide.pushDialogStyle4="0" | .data.JDMessage.pushguide.popUpTimes="0" | .data.JDMessage.pushguide.requestTimes="0" | .data.JDMessage.JumpCps.enableJumpCps="0" | .data.JDMessage.discountsNewList.support_newDiscountsList="0" | .data.JDMessage.recommendfloor.support_recommendfloor="0" | .data.JDMessage.recommendfeeds.support_recommendfeeds="0" | .data.JDMessage.recommendfeeds.fetchfeeds_api="0" | .data.JDMessage.PopQueue.enableOptimizedPopQueue="0" | .data.JDMessage.stationmsgcache.support_cache_queue="0" | .data.JDMessage.stationmsgcache.cache_queue_limit_num="0" | .data.JDMessage.stationmsgcache.msg_stacked_limit_count="0" | .data.JDMessage.stationmsgcache.msg_show_interval="0" | .data.JDMessage.stationmsgcache.msg_life_time="0" | .data.JDMessage.noMsgTrigger.enableNoMsgTrigger="0" | .data.JDMessage.newmessage.newskin="0" | .data.JDMessage.newmessage.downgrade="1" | .data.JDMessage.tabbarmessage.useMessageCache="0" | .data.JDMessage.tabbarmessage.touchtabrefresh="0" | .data.JDMessage.tabbarmessage.isNewTabAnimation="0" | .data.JDMessage.tabbarmessage.isAnchorBoomAnimation="0" | .data.JDMessage.tabbarmessage.isNewMessageReminder="0" | .data.JDMessage.tabbarmessage.tabbarUpdateRedDot="0" | .data.JDMessage.group.entry="0" | .data.JDMessage.mtaMixExpo.support_mta_mix_expo="0" | .data.JDMessage.tipsanimation.support_tipsanimation="0" | .data.JDMessage.stickyFoldBar.support_stickyFoldBar="0" | .data.JDMessage.TnUniversalViewController.enableTnSettingVC="0" | .data.JDMessage.redpointStyle.support_newRedPointStyle="0" | .data.JDMessage.MCSupportPreRequestConfig.enableMainPreRequest="0" | .data.JDMessage.MessagePerformanceOptimization.disableFirstFrameRenderFeeds="1" | .data.JDMessage.MessagePerformanceOptimization.responseRenderDelayMS="0" | .data.JDMessage.MessagePerformanceOptimization.cacheRenderDelayMS="0" | .data.JDMessage.TnConfig.enableDiscountsNewTNArch="0" | .data.JDMessage.TnConfig.enableCSListNewTNArch="0" | .data.JDMessage.TnConfig.enablePushGuideNewTNArch="0" | .data.JDMessage.TnConfig.enableFeedbackNewTNArch="0" | .data.JDMessage.TnConfig.enableLogisticsNewTNArch="0" | .data.JDMessage.TnConfig.enableStationNewTNArch="0" | .data.JDMessage.TnConfig.enableNewTNArch="0" | .data.JDMessage.TnConfig.enableNewTNCacheView="0" | .data.JDMessage.TnConfig.enableCalenderUseTN="0" | .data.JDMessage.TnConfig.unEnableCustomUseTN="1" | (.data.JDMessage.listcellTN.cell_support_tn_templateIds |= (if type=="object" then with_entries(.value="0") else . end)) | (.data.JDMessage.stationmsgTN.support_product_templateIds |= (if type=="object" then with_entries(.value="0") else . end)) | (.data.JDMessage.stationmsgTN.support_tn_templateIds |= (if type=="object" then with_entries(.value="0") else . end))'
+
+# Native Loon JSON rewrite for JD logConfig.
+^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=logConfig response-body-json-jq '.data.enable="0" | .data.logConfig.level=0 | .data.logConfig.maxQueueSize=0 | .data.logConfig.reportUrl=""'
+
 # Cart/activity egg animations and promotion dialog assets observed in the capture.
-^https?:\/\/storage\.360buyimg\.com\/(?:sunglasses-push-msg\/.*\.json|appcartsoa\/(?:client\/cart_egg_entry|cart_taohuadao_light|finalrixiao)\.json|app\.m\.jd\.com\/lottie\/scs_jingEgg(?:Halo|FireWorks)\.json|mobileskin\/an\d+\.json) _ reject
-^https?:\/\/storage\.360buyimg\.com\/appcartsoa\/must_have_dialog_add\.png _ reject
+^https?:\/\/storage\.360buyimg\.com\/(?:sunglasses-push-msg\/.*\.json|appcartsoa\/(?:client\/cart_egg_entry|cart_taohuadao_light|finalrixiao)\.json|app\.m\.jd\.com\/lottie\/scs_jingEgg(?:Halo|FireWorks)\.json|mobileskin\/an\d+\.json) reject-dict
+^https?:\/\/storage\.360buyimg\.com\/appcartsoa\/must_have_dialog_add\.png reject-img
 
 # Message-center TN/ad feed requests. The visible images load later from m.360buyimg.com with Referer: tn_message.
-^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=recommendShopV15100 _ reject
-^https?:\/\/sh\.jd\.com\/(?:d(?:\?|$)|j\/) _ reject
+^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=recommendShopV15100 reject-dict
+^https?:\/\/sh\.jd\.com\/(?:d(?:\?|$)|j\/) reject-img
 
 # XView popup / right-floating-logo / top-banner assets observed with Referer: download_image_xview_*.
-^https?:\/\/m15\.360buyimg\.com\/mobilecms\/jfs\/t1\/438105\/30\/1519\/25976\/6a0ee245F0ffa0abc\/00290900909a97ce\.png\.webp(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/91bc616e0466a56a\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/b49e6c18dc93b644\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a0d80d89d0e82\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/47c681638b906b03\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/ea22c154eb10e17b\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/66e9b6e4db0624e3\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/6b38726774a4aea1\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/21fe572ace75424c\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a4350785a1dd6\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/012be5528bd337f9\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a43507893f792\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/c80f74ad2681164a\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/cd8fd5a48cf9b9d5\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a435078f51d58\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/225ca316476fc324\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/16d0bb1031fef317\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/526d7e70026d6e83\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a35e3ed794586\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/4dfd579b5be94fb4\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/8aa037ba6e8ded94\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/013a244345fcd893\.png(?:[?!].*)?$ _ reject
-^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/027637540b4bb4a3\.png(?:[?!].*)?$ _ reject
+^https?:\/\/m15\.360buyimg\.com\/mobilecms\/jfs\/t1\/438105\/30\/1519\/25976\/6a0ee245F0ffa0abc\/00290900909a97ce\.png\.webp(?:[?!].*)?$ reject-img
+^https?:\/\/(?:m|img12|img20)\.360buyimg\.com\/.*\/(?:91bc616e0466a56a|b49e6c18dc93b644|013a0d80d89d0e82|47c681638b906b03|ea22c154eb10e17b|66e9b6e4db0624e3|6b38726774a4aea1|21fe572ace75424c|013a4350785a1dd6|012be5528bd337f9|013a43507893f792|c80f74ad2681164a|cd8fd5a48cf9b9d5|013a435078f51d58|225ca316476fc324|16d0bb1031fef317|526d7e70026d6e83|013a35e3ed794586|4dfd579b5be94fb4|8aa037ba6e8ded94|013a244345fcd893|027637540b4bb4a3)\.png(?:[?!].*)?$ reject-img
 
 # JD home/search png.webp ad widgets observed on m15.360buyimg.com.
-^https?:\/\/m15\.360buyimg\.com\/mobilecms\/.*\/(?:00290bd0304a5e2c|02760270966abb44|7ceccf56095b82c2|2ff2bc7114b60ef8|1e9e5bd271b47d12|002946514ade7f35|339aa673b60d6ee4|481edc30c40e0fa8|0029030030702891|74aecc04ce2dad5a|7f3d91b07f3efeec|021879439004dd53|002909004818dd62|b382c70b3f021750|00290c90e45c885c|e48d3e3ac168098e|f0d602aec9836766|002903c03c6f6648|7785153b1ae0c355)\.png\.webp(?:[?!].*)?$ _ reject
-
-[Script]
-http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=basicConfig script-path=https://raw.githubusercontent.com/GravityRyu/JBlock/refs/heads/main/jd_basic_config.js,requires-body=1,max-size=0,timeout=10
-http-response ^https?:\/\/api\.m\.jd\.com\/client\.action\?.*functionId=logConfig script-path=https://raw.githubusercontent.com/GravityRyu/JBlock/refs/heads/main/jd_log_config.js,requires-body=1,max-size=0,timeout=10
+^https?:\/\/m15\.360buyimg\.com\/mobilecms\/.*\/(?:00290bd0304a5e2c|02760270966abb44|7ceccf56095b82c2|2ff2bc7114b60ef8|1e9e5bd271b47d12|002946514ade7f35|339aa673b60d6ee4|481edc30c40e0fa8|0029030030702891|74aecc04ce2dad5a|7f3d91b07f3efeec|021879439004dd53|002909004818dd62|b382c70b3f021750|00290c90e45c885c|e48d3e3ac168098e|f0d602aec9836766|002903c03c6f6648|7785153b1ae0c355)\.png\.webp(?:[?!].*)?$ reject-img
 
 [MITM]
 hostname = api.m.jd.com, sh.jd.com, storage.360buyimg.com, m.360buyimg.com, m15.360buyimg.com, img12.360buyimg.com, img20.360buyimg.com
