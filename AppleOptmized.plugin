@@ -1,0 +1,23 @@
+#!name=Apple Cloudflare DoH
+#!desc=Force Apple domains via Cloudflare DoH
+
+[Dns]
+
+DOMAIN-SUFFIX,icloud.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,icloud-content.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,apple-cloudkit.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,apple-dns.net,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,push-apple.com.akadns.net,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,organicfruitapps.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,apple-mapkit.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,cdn-apple.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,appstore.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,aaplimg.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,itunes.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,apple.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,me.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,appsto.re,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,apple.co,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN,identity.apple.com,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-SUFFIX,akadns.net,dns-server=https://cloudflare-dns.com/dns-query
+DOMAIN-KEYWORD,apple.com.edgekey.net,dns-server=https://cloudflare-dns.com/dns-query
